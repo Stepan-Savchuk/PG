@@ -4,29 +4,72 @@
 using namespace std;
 
 int main(){
-  int seed = 13646;
+  // standart values
+  int seed = 136766;
+  int length = 16;
+  string path = "h.csv";
 
+  bool usingStandart;
+  bool answered;
+  char answer;
+  
+  //UI
+  do {
+    cout << "Do you want set your own preferences of generating password (seed,\nlength of password=16,and path of saving the file=h.csv)?\nIf no, standart one will be using(y/n) ";
+    cin >> answer;
+    cout << endl;
+    if(answer == 'y' || answer == 'n'){
+      answered = true;
+      if(answer == 'y'){
+	usingStandart = false;
+      } else{
+	usingStandart = true;
+      }
+    }
+  } while(!answered);
+
+  if(!usingStandart){
+
+    cout << "Please, enter preferred seed(only integer numbers) ";
+    cin >> seed;
+    cout << endl;
+
+    cout << "Please, enter length of password(only integer numbers) ";
+    cin >> length;
+    cout << endl;
+
+    cout << "Please, enter path where you want to save the file with password\npath\\name.format(path is optional, without it, file will be saved in directory of generator) ";
+    cin >> path;
+    cout << endl;
+  }
+  
+  //setting of seed
   srand(seed);
 
-  string password = "";
-  short c;
-
-  string path = "h.txt";
-  
+  //opening of file for writing the password
   ofstream out;
   out.open(path);
-  int i=0;
-  
-  for(int i=0; i < 16; i++){
+
+  string password = "";
+
+  short c=0;
+
+  //generating of password
+  for(int i=0; i < length-1; i++){
     int r = rand();
+
     password[i] = to_string(r)[0];
+
     if(r>=0 && r<=127 && c%2==0){
       char ch = r;
       password[i]=ch;
+
     }
+
     if(out.is_open()){
-    out << password[i];
+      out << password[i];
     }
+
     c++;
   }  
   return 0;
