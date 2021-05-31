@@ -4,12 +4,14 @@
 using namespace std;
 
 int main(){
-  srand(13646);
+  int seed = 13646;
+
+  srand(seed);
 
   string password = "";
   short c;
 
-  string path = "D:\\h.txt";
+  string path = "h.txt";
   
   ofstream out;
   out.open(path);
