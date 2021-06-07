@@ -7,7 +7,7 @@ int main(){
   // standart values
   int seed = 136766;
   int length = 16;
-  string path = "h.csv";
+  string path = "password.csv";
 
   bool usingStandart;
   bool answered;
@@ -52,25 +52,21 @@ int main(){
 
   string password = "";
 
-  short c=0;
-
   //generating of password
-  for(int i=0; i < length-1; i++){
+  for(int i=0; i < length; i++){
     int r = rand();
 
     password[i] = to_string(r)[0];
 
-    if(r>=0 && r<=127 && c%2==0){
+    if(r>=0 && r<=127 && i%2==0){
       char ch = r;
       password[i]=ch;
 
     }
 
     if(out.is_open()){
-      out << password[i];
+      out << password[i] << "_";
     }
-
-    c++;
   }  
   return 0;
 }
