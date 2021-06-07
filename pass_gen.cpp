@@ -3,9 +3,11 @@
 
 using namespace std;
 
+int getRandomNumber(int min, int max);
+
 int main(){
   // standart values
-  int seed = 136766;
+  int seed = 636766;
   int length = 16;
   string path = "password.csv";
 
@@ -30,15 +32,15 @@ int main(){
 
   if(!usingStandart){
 
-    cout << "Please, enter preferred seed(only integer numbers) ";
+    cout << "Please, enter preferred seed(only integer numbers): ";
     cin >> seed;
     cout << endl;
 
-    cout << "Please, enter length of password(only integer numbers) ";
+    cout << "Please, enter length of password(only integer numbers): ";
     cin >> length;
     cout << endl;
 
-    cout << "Please, enter path where you want to save the file with password\npath\\name.format(path is optional, without it, file will be saved in directory of generator) ";
+    cout << "Please, enter path where you want to save the file with password\npath\\name.format(path is optional, without it, file will be saved in directory of generator): ";
     cin >> path;
     cout << endl;
   }
@@ -54,19 +56,17 @@ int main(){
 
   //generating of password
   for(int i=0; i < length; i++){
-    int r = rand();
-
-    password[i] = to_string(r)[0];
-
-    if(r>=0 && r<=127 && i%2==0){
-      char ch = r;
-      password[i]=ch;
-
-    }
+    password[i] = getRandomNumber(32, 126);
 
     if(out.is_open()){
-      out << password[i] << "_";
+      out << password[i];
     }
   }  
   return 0;
+}
+
+
+int getRandomNumber(int min, int max){
+  static const double fraction = 1.0 / (static_cast<double>(RAND_MAX) + 1.0);
+  return static_cast<int>(rand() * fraction * (max - min - 1) + min);
 }
