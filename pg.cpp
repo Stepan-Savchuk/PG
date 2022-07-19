@@ -3,10 +3,16 @@
 
 using namespace std;
 
+/*TODO:
+ * Encrypting of file with password by a password
+ * option to create multiple passwords with the same options
+ * ability to exclude special characters
+ * ability to choose between *.csv(non-encrypted) and *.pw(encrypted) file formats
+*/
 int getRandomNumber(int min, int max);
 
 int main(){
-  // standart values
+  //initialize values
   int seed = 636766;
   int length = 16;
   string path = "password.csv";
