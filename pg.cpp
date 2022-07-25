@@ -46,8 +46,10 @@ int main(){
     cin >> length;
     cout << endl;
 
-    cout << "Please, enter path where you want to save the file with password\npath\\name.format(path is optional, without it, file will be saved in directory of generator): ";
-    cin >> path;
+    cout << "Please, enter path where you want to save the file with password\npath/name.format(path is optional, without it, file will be saved in directory of generator): ";
+    string tempPath;
+    getline(cin, tempPath);
+    path = (tempPath=="") ? path : tempPath;
     cout << endl;
   }
   
