@@ -11,6 +11,12 @@ using namespace std;
 */
 int getRandomNumber(int min, int max);
 
+void writeStringVariable(string& var);
+
+void writeIntVariable(int& var);
+
+
+
 int main(){
   //initialize values
   int seed = 636766;
@@ -19,16 +25,16 @@ int main(){
 
   bool usingStandart;
   bool answered;
-  char answer;
+  string answer;
   
   //UI
   do {
     cout << "Do you want set your own preferences of generating password (seed,\nlength of password=16,and path of saving the file=h.csv)?\nIf no, standart one will be using(y/n) ";
-    cin >> answer;
-    cout << endl;
-    if(answer == 'y' || answer == 'n'){
+    getline(cin, answer);
+    cout << answer << endl;
+    if(answer == "y" || answer == "n"){
       answered = true;
-      if(answer == 'y'){
+      if(answer == "y"){
 	usingStandart = false;
       } else{
 	usingStandart = true;
@@ -39,17 +45,17 @@ int main(){
   if(!usingStandart){
 
     cout << "Please, enter preferred seed(only integer numbers): ";
-    cin >> seed;
+    writeIntVariable(seed);
     cout << endl;
 
     cout << "Please, enter length of password(only integer numbers): ";
-    cin >> length;
+    writeIntVariable(length);
     cout << endl;
 
     cout << "Please, enter path where you want to save the file with password\npath/name.format(path is optional, without it, file will be saved in directory of generator): ";
     string tempPath;
-    getline(cin, tempPath);
-    path = (tempPath=="") ? path : tempPath;
+    writeStringVariable(tempPath);
+    path = (tempPath=="" || tempPath=="\n") ? path : tempPath;
     cout << endl;
   }
   
@@ -77,4 +83,14 @@ int main(){
 int getRandomNumber(int min, int max){
   static const double fraction = 1.0 / (static_cast<double>(RAND_MAX) + 1.0);
   return static_cast<int>(rand() * fraction * (max - min - 1) + min);
+}
+
+void writeStringVariable(string& var){
+	getline(cin, var);
+}
+
+void writeIntVariable(int& var){
+	string temp;
+	getline(cin, temp);
+	var = stoi(temp);
 }
