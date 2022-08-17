@@ -9,12 +9,17 @@ using namespace std;
  * ability to exclude special characters
  * ability to choose between *.csv(non-encrypted) and *.pw(encrypted) file formats
 */
+
+
 int getRandomNumber(int min, int max);
 
 void writeStringVariable(string& var);
 
 void writeIntVariable(int& var);
 
+bool writeEncryptedFile(string title, string password, string path);
+
+bool readFile(string path);
 
 
 int main(){
@@ -93,4 +98,15 @@ void writeIntVariable(int& var){
 	string temp;
 	getline(cin, temp);
 	var = stoi(temp);
+}
+
+bool writeEncryptedFile(string title, string password,
+ string path){
+	//start of some crypto-magic or smth
+	//write byte by byte(or symbol by symbol) cypted password with a title(optional)
+	return true;
+}
+
+bool readFile(string path){
+	return true;
 }
