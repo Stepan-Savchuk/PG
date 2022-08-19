@@ -103,6 +103,8 @@ void writeIntVariable(int& var){
 bool writeEncryptedFile(string title, string password,
  string path){
 	//start of some crypto-magic or smth
+	int maxSymbolsCount = 100;
+	int move = getRandomNumber(1, maxSymbolsCount);
 	//write byte by byte(or symbol by symbol) cypted password with a title(optional)
 	return true;
 }
