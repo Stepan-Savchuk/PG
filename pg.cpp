@@ -105,6 +105,11 @@ bool writeEncryptedFile(string title, string password,
 	//start of some crypto-magic or smth
 	int maxSymbolsCount = 100;
 	int move = getRandomNumber(1, maxSymbolsCount);
+	char moveSymbol = move;
+	string fPath = title + ".pw";
+	ofstream tout;
+	tout.open(fPath);
+	tout << moveSymbol << "_";
 	//write byte by byte(or symbol by symbol) cypted password with a title(optional)
 	return true;
 }
