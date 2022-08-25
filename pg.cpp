@@ -17,7 +17,7 @@ void writeStringVariable(string& var);
 
 void writeIntVariable(int& var);
 
-bool writeEncryptedFile(string title, string password, string path);
+bool writeEncryptedFile(string title, string password);
 
 bool readFile(string path);
 
@@ -80,7 +80,10 @@ int main(){
     if(out.is_open()){
       out << password[i];
     }
-  }  
+  }
+
+  //Test of writeEncryptedPassword(temp)
+  writeEncryptedFile("TestAxx", password);
   return 0;
 }
 
@@ -100,28 +103,32 @@ void writeIntVariable(int& var){
 	var = stoi(temp);
 }
 
-bool writeEncryptedFile(string title, string password,
- string path){
+bool writeEncryptedFile(string title, string password
+){
 	//start of some crypto-magic or smth
 	int maxSymbolsCount = 100;
 	int move = getRandomNumber(1, maxSymbolsCount);
+	string newTitle;
 	string newPassword;
-	
+
 
 	char moveSymbol = move;
 	
-
-	string fPath = title + ".pw";
-	ofstream tout;
-	tout.open(fPath);
-	
-
-	tout << moveSymbol << "_";
-	
+	for(char c : title){
+		newTitle += (c + move);
+	}
 
 	for(char c : password){
-		newPassword += c + move;
+		newPassword += (c + move);
 	}
+
+	string fPath = title + "p.pw";//title in path name is temporary
+        ofstream tout;
+        tout.open(fPath);
+
+
+        tout << moveSymbol << newTitle << "_" << newPassword;
+
 	//write byte by byte(or symbol by symbol) cypted password with a title(optional)
 	return true;
 }
