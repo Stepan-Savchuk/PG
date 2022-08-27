@@ -126,6 +126,8 @@ bool writeEncryptedFile(string title, string password
         ofstream tout;
         tout.open(fPath);
 
+	cout << "MS: " << moveSymbol << "NT: " << newTitle << "_" << newPassword; 
+
 
         tout << moveSymbol << newTitle << "_" << newPassword;
 
