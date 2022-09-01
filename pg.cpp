@@ -75,12 +75,13 @@ int main(){
 
   //generating of password
   for(int i=0; i < length; i++){
-    password[i] = getRandomNumber(32, 126);
-
-    if(out.is_open()){
-      out << password[i];
-    }
+    password += getRandomNumber(32, 126);
   }
+
+  out << password;
+
+
+  cout << "Global password" << password << endl;
 
   //Test of writeEncryptedPassword(temp)
   writeEncryptedFile("TestAxx", password);
@@ -118,6 +119,8 @@ bool writeEncryptedFile(string title, string password
 		newTitle += (c + move);
 	}
 
+	cout << "local password: " << endl;
+
 	for(char c : password){
 		newPassword += (c + move);
 	}
@@ -126,10 +129,10 @@ bool writeEncryptedFile(string title, string password
         ofstream tout;
         tout.open(fPath);
 
-	cout << "MS: " << moveSymbol << "NT: " << newTitle << "_" << newPassword; 
+	cout << "MS: " << moveSymbol << " NT: " << newTitle << "_" << newPassword; 
 
 
-        tout << moveSymbol << newTitle << "_" << newPassword;
+        tout << moveSymbol << newTitle << "_" << newPassword << endl;
 
 	//write byte by byte(or symbol by symbol) cypted password with a title(optional)
 	return true;
