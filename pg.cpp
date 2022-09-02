@@ -119,7 +119,7 @@ bool writeEncryptedFile(string title, string password
 		newTitle += (c + move);
 	}
 
-	cout << "local password: " << endl;
+	cout << "local password: " << password << endl;
 
 	for(char c : password){
 		newPassword += (c + move);
@@ -129,7 +129,7 @@ bool writeEncryptedFile(string title, string password
         ofstream tout;
         tout.open(fPath);
 
-	cout << "MS: " << moveSymbol << " NT: " << newTitle << "_" << newPassword; 
+	cout << "MS: " << moveSymbol << " NT: " << newTitle << "_" << newPassword << endl; 
 
 
         tout << moveSymbol << newTitle << "_" << newPassword << endl;
