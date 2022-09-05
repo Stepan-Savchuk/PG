@@ -134,10 +134,17 @@ bool writeEncryptedFile(string title, string password
 
         tout << moveSymbol << newTitle << "_" << newPassword << endl;
 
+	tout.close();
+
 	//write byte by byte(or symbol by symbol) cypted password with a title(optional)
 	return true;
 }
 
 bool readFile(string path){
+	ifstream tin;
+	tin.open(path);
+
+
+	tin.close();
 	return true;
 }
