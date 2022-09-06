@@ -1,6 +1,8 @@
 #include<iostream>
 #include<fstream>
 
+#include<cstdio>
+
 using namespace std;
 
 /*TODO:
@@ -144,6 +146,14 @@ bool readFile(string path){
 	ifstream tin;
 	tin.open(path);
 
+	int fLength;
+
+	fseek(&tin, 0L, SEEK_END);
+	fLength = ftell(&tin);
+
+	cout << "Length of file in chars: " << fLength << cout;
+
+	char* buffer[fLength];
 
 	tin.close();
 	return true;
